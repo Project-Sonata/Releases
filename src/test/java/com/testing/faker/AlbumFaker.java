@@ -1,11 +1,9 @@
 package com.testing.faker;
 
 import com.odeyalo.sonata.releases.dto.AlbumReleaseDto;
+import com.odeyalo.sonata.releases.dto.Images;
 import com.odeyalo.sonata.releases.dto.UploadTrackDto;
-import com.odeyalo.sonata.releases.entity.Album;
-import com.odeyalo.sonata.releases.entity.Artist;
-import com.odeyalo.sonata.releases.entity.Release;
-import com.odeyalo.sonata.releases.entity.Track;
+import com.odeyalo.sonata.releases.entity.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -47,10 +45,11 @@ public class AlbumFaker {
     }
 
     private static Album toAlbum(AlbumReleaseDto release, List<Artist> artists) {
+        Set<ImageInfo> images = Set.of(ImageInfo.builder().url(release.getThumbnailUrl()).build());
         return Album.builder()
                 .albumType(release.getAlbumType())
                 .name(release.getName())
-                .thumbnailUrl(release.getThumbnailUrl())
+                .images(images)
                 .durationMs(release.getDurationMs())
                 .totalTrackCount(release.getTotalTrackCount())
                 .publicId(UUID.randomUUID().toString().substring(0, 30).replaceAll("-", ""))

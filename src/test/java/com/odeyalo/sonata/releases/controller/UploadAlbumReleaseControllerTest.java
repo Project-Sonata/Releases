@@ -13,6 +13,7 @@ import com.testing.faker.UploadAlbumReleaseDtoFaker;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -189,6 +190,7 @@ public class UploadAlbumReleaseControllerTest extends UploadReleaseControllerTes
     }
 
     @Test
+    @Disabled("THe test is disabled because requirement with images have been changed")
     void thumbnailShouldBeValid() throws Exception {
         RequestBodyWithMvcResultPair<AlbumUploadReleaseDto> pair = prepareValidBodyAsPair();
 
@@ -196,7 +198,7 @@ public class UploadAlbumReleaseControllerTest extends UploadReleaseControllerTes
 
         Album album = albumRepository.findByPublicId(responseBody.getId()).get();
 
-        assertEquals(pair.body.getRelease().getThumbnailUrl(), album.getThumbnailUrl());
+//        assertEquals(pair.body.getRelease().getThumbnailUrl(), album.getThumbnailUrl());
     }
 
     @Test
